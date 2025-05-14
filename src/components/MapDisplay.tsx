@@ -4,15 +4,15 @@ import { Ship, Plane } from 'lucide-react';
 
 const MapDisplay: React.FC = () => {
   const { currentStation } = useATC();
-  const [mapUrl, setMapUrl] = useState('https://map.adsbexchange.com/');
+  const [mapUrl, setMapUrl] = useState('https://globe.adsbexchange.com/');
   const [showMarineTraffic, setShowMarineTraffic] = useState(false);
 
   useEffect(() => {
     if (currentStation && currentStation.lat && currentStation.lon) {
       if (showMarineTraffic) {
-        setMapUrl(`https://www.marinetraffic.com/en/ais/embed/zoom:12/centery:${currentStation.lat}/centerx:${currentStation.lon}/maptype:4/shownames:true/mmsi:0/shipid:0/fleet:false/fleet_id:/vtypes:/showmenu:false/remember:false/showpositions:true/showship:true`);
+        setMapUrl(`https://www.marinetraffic.com/en/ais/embed/zoom:12/centery:${currentStation.lat}/centerx:${currentStation.lon}/maptype:4/shownames:true/mmsi:0/shipid:0/fleet:false/fleet_id:/vtypes:/showmenu:true/remember:false/showpositions:true/showship:true`);
       } else {
-        setMapUrl(`https://map.adsbexchange.com/?lat=${currentStation.lat}&lon=${currentStation.lon}&zoom=12&hideSidebar&hideButtons&hideAirports&hideStats`);
+        setMapUrl(`https://globe.adsbexchange.com/?lat=${currentStation.lat}&lon=${currentStation.lon}&zoom=12&hideSidebar`);
       }
     }
   }, [currentStation, showMarineTraffic]);
@@ -25,7 +25,7 @@ const MapDisplay: React.FC = () => {
         title={showMarineTraffic ? "MarineTraffic Map" : "ADS-B Exchange Map"}
         loading="lazy"
         allow="fullscreen"
-        sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+        referrerPolicy="no-referrer"
       />
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/30 to-transparent" aria-hidden="true" />
       
