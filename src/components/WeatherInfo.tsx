@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cloud, Wind, Thermometer, Droplet } from 'lucide-react';
+import { Cloud, Wind, Thermometer, Droplet, Ship, Plane } from 'lucide-react';
 import { useATC } from '../context/ATCContext';
 
 const WeatherInfo: React.FC = () => {
@@ -10,9 +10,13 @@ const WeatherInfo: React.FC = () => {
   return (
     <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-10 w-11/12 md:w-80">
       <div className="backdrop-blur-md rounded-xl p-4 shadow-lg border border-white/10 transition-all duration-300">
-        <h2 className="text-xl font-bold text-center mb-2">
-          {currentStation.code} - {currentStation.name}
-        </h2>
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <Plane size={16} className="text-blue-400" />
+          <h2 className="text-xl font-bold text-center">
+            {currentStation.code} - {currentStation.name}
+          </h2>
+          <Ship size={16} className="text-blue-400" />
+        </div>
         
         {isLoading && (
           <div className="flex justify-center items-center py-4">
@@ -58,7 +62,7 @@ const WeatherInfo: React.FC = () => {
             </div>
             
             <div className="text-xs text-gray-400/90 mt-2 text-center">
-              Wind conditions may affect audio quality
+              Weather conditions may affect both air and marine traffic
             </div>
           </div>
         )}
