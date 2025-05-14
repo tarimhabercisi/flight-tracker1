@@ -10,7 +10,7 @@ const MapDisplay: React.FC = () => {
   useEffect(() => {
     if (currentStation && currentStation.lat && currentStation.lon) {
       if (showMarineTraffic) {
-        setMapUrl(`https://www.marinetraffic.com/en/ais/embed/zoom:12/centery:${currentStation.lat}/centerx:${currentStation.lon}/maptype:4/shownames:true/mmsi:0/shipid:0/fleet:false/fleet_id:/vtypes:/showmenu:true/remember:false/showpositions:true/showship:true`);
+        setMapUrl(`https://www.marinetraffic.com/en/ais/embed/zoom:12/centery:${currentStation.lat}/centerx:${currentStation.lon}/maptype:2/shownames:true/mmsi:0/shipid:0/fleet:false/fleet_id:/vtypes:/showmenu:false/remember:false/showpositions:true/showship:true/showvrmtree:false/showmarinenotes:false/showgrid:false`);
       } else {
         setMapUrl(`https://globe.adsbexchange.com/?lat=${currentStation.lat}&lon=${currentStation.lon}&zoom=12&hideSidebar`);
       }
@@ -25,6 +25,7 @@ const MapDisplay: React.FC = () => {
         title={showMarineTraffic ? "MarineTraffic Map" : "ADS-B Exchange Map"}
         loading="lazy"
         allow="fullscreen"
+        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
         referrerPolicy="no-referrer"
       />
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/30 to-transparent" aria-hidden="true" />
